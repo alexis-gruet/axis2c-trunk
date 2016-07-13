@@ -23,7 +23,7 @@ axis2_http_server_LDADD   =  $(LDFLAGS) \
 		             $(top_builddir)/src/core/transport/http/common/libaxis2_http_common.la \
 			     $(top_builddir)/axiom/src/om/libaxis2_axiom.la \
 			     $(top_builddir)/util/src/libaxutil.la \
-			     $(top_builddir)/axiom/src/parser/$(WRAPPER_DIR)/libaxis2_parser.la \
+			     $(top_builddir)/axiom/src/parser/guththila/libaxis2_parser.la \
                              $(top_builddir)/src/core/description/libaxis2_description.la \
 			     $(top_builddir)/src/core/deployment/libaxis2_deployment.la \
 			     $(top_builddir)/src/core/context/libaxis2_context.la \

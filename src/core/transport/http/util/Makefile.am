@@ -18,7 +18,7 @@ noinst_LTLIBRARIES = libaxis2_http_util.la
 libaxis2_http_util_la_SOURCES = http_transport_utils.c
 
 libaxis2_http_util_la_LIBADD=$(top_builddir)/util/src/libaxutil.la \
-			$(top_builddir)/axiom/src/parser/${WRAPPER_DIR}/libaxis2_parser.la\
+			$(top_builddir)/axiom/src/parser/guththila/libaxis2_parser.la\
 			$(top_builddir)/axiom/src/om/libaxis2_axiom.la 
 
 
