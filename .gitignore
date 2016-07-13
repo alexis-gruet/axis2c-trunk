@@ -1,0 +1,78 @@
+.svn
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+
+#Axis2/c specific
+axiom/compile
+axiom/test-driver
+axis2c.pc
+axis2c_build.sh
+bindist.sh
+compile
+dist.sh
+guththila/compile
+neethi/compile
+neethi/test-driver
+neethi/test/test
+src/core/transport/http/server/simple_axis2_server/axis2_http_server
+src/core/transport/tcp/server/simple_tcp_server/axis2_tcp_server
+test-driver
+tools/md5/src/md5
+tools/tcpmon/src/tcpmon
+util/compile
+util/test-driver
+
+
+#libtool
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.*
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/
+missing
+stamp-h?
+.deps/
+.dirstamp
+.libs/
+*.l[ao]
+*~
