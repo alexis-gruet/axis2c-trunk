@@ -244,7 +244,8 @@ axis2_http_client_send(
     else
     {
         /*Proxy is not enabled*/
-
+	/*ktws.io Added a debug trace*/
+        AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "Socket creation"); 
         if(client->sockfd < 0)
         {
             client->sockfd = (int)axutil_network_handler_open_socket(env, host, port);

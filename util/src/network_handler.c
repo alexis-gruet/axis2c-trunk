@@ -103,6 +103,21 @@ axutil_network_handler_open_socket(
 
     sock_addr.sin_port = htons((axis2_unsigned_short_t)port);
 
+    /* ktws.io / agruet [at] mediainspection [dot] hk
+     *
+     * @see http://axis.8716.n7.nabble.com/Axis2C-How-to-reuse-client-td94991.html
+     * @see http://www.sekuda.com/overriding_the_default_linux_kernel_20_second_tcp_socket_connect_timeout
+     *
+     * The Guest OS provide a default behavior when socket creation failed. This is done through /proc/sys/net/ipv4/tcp_syn_retries. 
+     * By default the value is set to 5 on Ubuntu systems, leading to let the tcp connxion aprox ~ 2mns IDLE. 
+     *
+     * The following socket option avoid any retries when socket creation failed. This is a bit agressive but fit my needs for 
+     * performance while letting the Ubuntu system with it's default value. 
+     */
+    int synretries = 1;
+    setsockopt(sock, IPPROTO_TCP, TCP_SYNCNT, (const char *)&synretries, sizeof(synretries));
+    /** end ktws.io **/
+
     /* Connect to server */
     if(connect(sock, (struct sockaddr *)&sock_addr, sizeof(sock_addr)) < 0)
     {
@@ -114,6 +129,8 @@ axutil_network_handler_open_socket(
     ll.l_onoff = 1;
     ll.l_linger = 5;
     setsockopt(sock, SOL_SOCKET, SO_LINGER, (const char *)&ll, sizeof(struct linger));
+    AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "TCP_SYNCNT");
+
     return sock;
 }
 
@@ -229,6 +246,18 @@ axutil_network_handler_set_sock_option(
         }
         return AXIS2_SUCCESS;
     }
+    /** ktws.io 
+    else if(option == TCP_SYNCNT)
+    {
+        if((setsockopt(socket, SOL_SOCKET, TCP_SYNCNT, (char *)&value, sizeof(value))) < 0)
+        {
+	    AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "TCP_SYNCT Failed to be set");
+	    return AXIS2_FAILURE;
+	}
+        AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "TCP_SYNCT is set to 1");
+        return AXIS2_SUCCESS;
+    }
+    **/
     return AXIS2_FAILURE;
 }
 
